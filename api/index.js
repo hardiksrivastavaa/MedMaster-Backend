@@ -38,8 +38,10 @@ app.get('/', (req, res) => {
     res.send('MedMaster-Backend API is running...');
 });
 
-const PORT = process.env.PORT || 5000;
 
-if (process.env.ENVIRONMENT == 'dev') {
+if (process.env.NODE_ENV === 'development') {
+    const PORT = process.env.PORT;
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 }
+
+export default app;
