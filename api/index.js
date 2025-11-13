@@ -33,15 +33,16 @@ app.use('/api/student', jsonParser, studentRoutes);
 // Multer's body-parser runs exclusively on this endpoint.
 app.use('/api/upload', uploadRoutes);
 
-// Simple welcome route
-app.get('/', (req, res) => {
-    res.send('MedMaster-Backend API is running...');
+// health endpoint
+app.get('/api', (req, res) => {
+    res.json({ message: 'MedMaster backend is running!' });
 });
 
+// if (process.env.NODE_ENV === 'development') {
+//     const PORT = process.env.PORT;
+//     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// }
 
-if (process.env.NODE_ENV === 'development') {
-    const PORT = process.env.PORT;
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+export default function handler(req, res) {
+    return app(req, res);
 }
-
-export default app;
